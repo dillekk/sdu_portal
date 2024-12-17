@@ -1,0 +1,45 @@
+  <div class="flex-row-aded">
+        <span class="year-and-term">Year and term:</span>
+        <div class="dropdown" style="margin-left: 30%;">
+            <a class="btn btn-secondary dropdown-toggle" role="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?= htmlspecialchars($term) ?>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                <a class="dropdown-item" href="?term=2024-2025 1 Term">2024-2025 1 Term</a>
+                <a class="dropdown-item" href="?term=2023-2024 2 Term">2023-2024 2 Term</a>
+            </div>
+        </div>
+    </div>
+    <span class="term-5"><?= htmlspecialchars($term) ?></span>
+    <div class="table-container" style="display: block;" id="timetable1">
+        <table class="timetable1" >
+            <thead>
+            <tr>
+                <th>Code</th>
+                <th>Course Name</th>
+                <th>Credits</th>
+                <th>ECTS</th>
+                <th>Total Grade</th>
+                <th>Letter Grade</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php if (!empty($grades)): ?>
+                <?php foreach ($grades as $grade): ?>
+                    <tr>
+                        <td><?= htmlspecialchars($grade['code']) ?></td>
+                        <td><?= htmlspecialchars($grade['course_name']) ?></td>
+                        <td><?= htmlspecialchars($grade['cr']) ?></td>
+                        <td><?= htmlspecialchars($grade['ects']) ?></td>
+                        <td><?= htmlspecialchars($grade['total_grade'] ?? 'N/A') ?></td>
+                        <td><?= htmlspecialchars($grade['letter_grade']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            <?php else: ?>
+                <tr>
+                    <td colspan="6" class="text-center">This student has no grades recorded.</td>
+                </tr>
+            <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
